@@ -255,85 +255,6 @@ export default function HomePage() {
               </a>
             </motion.div>
 
-            {/* Stats Band */}
-            <motion.div {...fade(0.5)}
-              className="flex flex-col sm:flex-row items-center gap-2 rounded-[2rem] sm:rounded-full p-4 sm:p-2 w-full sm:w-fit mt-10"
-              style={{ 
-                background: "rgba(255, 255, 255, 0.45)", 
-                backdropFilter: "blur(24px)",
-                border: "1.5px solid rgba(141, 75, 0, 0.15)",
-                boxShadow: "0 20px 48px -12px rgba(141,75,0,0.12), inset 0 1px 1px rgba(255,255,255,0.9), inset 0 -1px 1px rgba(255,255,255,0.3)"
-              }}
-            >
-              {[
-                { 
-                  val: "15K+", 
-                  label: "Customers", 
-                  icon: Heart, 
-                  iconColor: "#e05c5c",
-                  bgColor: "linear-gradient(135deg, #fff2f2 0%, #ffe3e3 100%)",
-                  shadowColor: "rgba(224,92,92,0.15)"
-                },
-                { 
-                  val: "₹199", 
-                  label: "Start Price",   
-                  icon: Tag, 
-                  iconColor: "#8d4b00",
-                  bgColor: "linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%)",
-                  shadowColor: "rgba(141,75,0,0.15)"
-                },
-                { 
-                  val: "4.8★", 
-                  label: "Avg Rating",       
-                  icon: Star, 
-                  iconColor: "#d97706",
-                  bgColor: "linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)",
-                  shadowColor: "rgba(217,119,6,0.15)"
-                },
-              ].map(({ val, label, icon: IconComponent, iconColor, bgColor, shadowColor }, i) => (
-                <div key={label} className="flex flex-col sm:flex-row items-center w-full sm:w-auto">
-                  <motion.div 
-                    whileHover="hover"
-                    className="group flex items-center gap-3.5 px-6 py-3 sm:px-5 sm:py-2.5 rounded-2xl sm:rounded-full hover:bg-white/80 transition-all duration-300 cursor-default w-full sm:w-auto justify-start sm:justify-center"
-                  >
-                    <motion.div 
-                      variants={{
-                        hover: { 
-                          scale: 1.1,
-                          rotate: 15,
-                          boxShadow: `0 0 20px ${iconColor}40`
-                        }
-                      }}
-                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                      className="w-11 h-11 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-white/60 transition-all duration-300"
-                      style={{ 
-                        background: bgColor,
-                        boxShadow: `0 6px 16px ${shadowColor}`
-                      }}
-                    >
-                      <IconComponent 
-                        size={16} 
-                        style={{ color: iconColor }} 
-                        fill={IconComponent === Star || IconComponent === Heart ? iconColor : "none"} 
-                        strokeWidth={2}
-                      />
-                    </motion.div>
-                    <div className="flex flex-col text-left">
-                      <span className="text-[16px] sm:text-[15px] font-extrabold leading-none text-ink-brown mb-1" style={{ fontFamily: "var(--font-display)" }}>{val}</span>
-                      <span className="text-[9px] uppercase tracking-[0.22em] font-bold text-[#b08060]">{label}</span>
-                    </div>
-                  </motion.div>
-                  {i < 2 && (
-                    <>
-                      {/* Desktop divider */}
-                      <div className="hidden sm:block w-px h-8 mx-1" style={{ background: "linear-gradient(to bottom, transparent, rgba(141,75,0,0.15), transparent)" }} />
-                      {/* Mobile divider */}
-                      <div className="block sm:hidden w-full h-px my-1 opacity-40" style={{ background: "linear-gradient(to right, transparent, rgba(141,75,0,0.15), transparent)" }} />
-                    </>
-                  )}
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           {/* ── RIGHT FLOATING COLLAGE ── */}
@@ -568,14 +489,14 @@ export default function HomePage() {
               Next Trending Drop In ...
             </motion.h2>
             
-            <div className="flex justify-center gap-8 md:gap-16 my-8">
+            <div className="flex justify-center gap-2 sm:gap-6 md:gap-12 my-8">
               {[["Days",d],["Hours",h],["Mins",m],["Secs",s]].map(([label,val],i,arr)=>(
-                <div key={label} className="flex items-center gap-8 md:gap-16">
-                  <div className="text-center">
-                    <div className="text-4xl md:text-5xl font-bold tracking-tight font-display text-primary-fixed">{val}</div>
-                    <div className="text-label-sm uppercase opacity-70 mt-2 tracking-wider">{label}</div>
+                <div key={label} className="flex items-center gap-2 sm:gap-6 md:gap-12">
+                  <div className="text-center min-w-[48px] sm:min-w-[64px]">
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight font-display text-primary-fixed">{val}</div>
+                    <div className="text-[9px] sm:text-xs uppercase opacity-70 mt-1 sm:mt-2 tracking-wider">{label}</div>
                   </div>
-                  {i<arr.length-1 && <div className="text-4xl text-warm-beige/30 font-light">:</div>}
+                  {i<arr.length-1 && <div className="text-2xl sm:text-4xl text-warm-beige/30 font-light pb-3 sm:pb-0">:</div>}
                 </div>
               ))}
             </div>

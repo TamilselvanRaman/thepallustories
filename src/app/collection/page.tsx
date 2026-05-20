@@ -89,6 +89,7 @@ export default function CollectionPage() {
   const [inStockOnly, setInStockOnly] = useState(false);
   // keep selectedColor for legacy compat
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -420,7 +421,16 @@ export default function CollectionPage() {
       <main className="container-artisan px-6 md:px-12 mx-auto flex flex-col md:flex-row gap-8">
         {/* ── EDITORIAL SIDEBAR FILTER ────────────────────────── */}
         <aside className="w-full md:w-60 flex-shrink-0">
-          <div className="sticky top-24" style={{
+          <div className="md:hidden mb-4">
+            <button 
+              onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+              className="w-full flex items-center justify-between px-4 py-3 bg-white border border-[#ece0d5] rounded-xl font-bold text-[#7c5c42] uppercase tracking-widest text-[11px] shadow-sm"
+            >
+              <span>{isMobileFilterOpen ? "Hide Filters" : "Show Filters"}</span>
+              <span className="material-symbols-outlined text-lg" style={{ fontFamily: '"Material Symbols Outlined"' }}>{isMobileFilterOpen ? "expand_less" : "expand_more"}</span>
+            </button>
+          </div>
+          <div className={`sticky top-24 ${isMobileFilterOpen ? "block" : "hidden"} md:block`} style={{
             background: "#fdf8f2",
             borderRadius: "16px",
             padding: "28px 20px",
@@ -635,7 +645,7 @@ export default function CollectionPage() {
               img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBZ2RWrE9Na6Vt6anPpp6v7CfLdMkbqjtK7J-QgT7Brgbgytvl7V5Kf770HomRFEAhguQrK0WQoj6P0Fe1DFUbXEk0Zmzeiv-xSxGf8QFlJB9yaAmg5s4FckTXVAM3lY7G-b5lqyplXfjcnjTvadHL5t7pTuMHpYb6-grW2egoi4ckS9YRMhqrN-O4cU5XghT_m9ydPY_lhFxptd-CZvuasBaTosKK4roj52IrIw_h40gYCpI0M2IWaDh0wWlOT2LJKcOcLfCZqmgI",
             },
           ].map((vibe, i) => (
-            <div key={i} className="group relative h-[500px] rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+            <div key={i} className="group relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-lg cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
               <Image fill className="w-full h-full object-cover" alt={vibe.title} src={vibe.img} />
               <div className="absolute inset-0 bg-ink-brown/20 flex flex-col items-center justify-center text-white opacity-100 group-hover:bg-ink-brown/40 transition-all z-10">
                 <h3 className="font-display-lg text-headline-lg mb-2">{vibe.title}</h3>
@@ -681,7 +691,7 @@ export default function CollectionPage() {
               src: "/videos/video - 8.mp4",
             },
           ].map((reel, i) => (
-            <div key={i} className="flex-shrink-0 w-72 h-[450px] rounded-xl overflow-hidden relative shadow-md snap-start group">
+            <div key={i} className="flex-shrink-0 w-[80vw] md:w-72 h-[450px] rounded-xl overflow-hidden relative shadow-md snap-start group">
               <video autoPlay loop muted playsInline className="w-full h-full object-cover" src={reel.src} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-4 z-10 pointer-events-none">
                 <div className="flex items-center gap-2 text-white mb-2">

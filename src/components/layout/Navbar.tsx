@@ -152,7 +152,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[112px] z-40 glass-nav border-t border-outline-subtle px-6 py-8 md:hidden"
+            className="fixed inset-x-0 top-[112px] bottom-0 z-40 glass-nav border-t border-outline-subtle px-6 py-8 md:hidden overflow-y-auto"
           >
             <nav className="flex flex-col gap-6">
               {navLinks.map((link) => (
